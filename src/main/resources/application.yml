@@ -1,0 +1,35 @@
+spring:
+  config:
+    import: optional:classpath:application-local.yml
+
+server:
+  port: 8082
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  ai:
+    dashscope:
+      api-key: ${DASHSCOPE_API_KEY:}
+      chat:
+        options:
+          model: qwen-plus
+          temperature: 0.3
+      embedding:
+        options:
+          model: text-embedding-v3
+
+app:
+  vector-store: simple
+  rag:
+    chunk-size: 500
+    chunk-overlap: 50
+    top-k: 4
+    similarity-threshold: 0.0
+  chat:
+    max-history-rounds: 10
+
+logging:
+  level:
+    com.liys.ai_assistant: INFO
